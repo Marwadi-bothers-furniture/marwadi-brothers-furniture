@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marwadi Brothers Furniture</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f5f0e6;
+text-align:center;
+}
+
+/* HEADER */
+header{
+background:#5b2c06;
+color:white;
+padding:15px;
+}
+
+/* SEARCH BOX */
+.search-box{
+background:#fff;
+padding:10px;
+position:sticky;
+top:0;
+z-index:999;
+display:flex;
+justify-content:center;
+gap:10px;
+}
+
+.search-box input{
+width:70%;
+max-width:400px;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.search-box button{
+padding:10px 15px;
+background:gold;
+border:none;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* SECTIONS */
+h2{
+margin-top:20px;
+color:#3d1a00;
+}
+
+/* GALLERY */
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+padding:10px;
+}
+
+.gallery img{
+width:150px;
+height:150px;
+object-fit:cover;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* WHATSAPP FLOAT BUTTON */
+#waBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:white;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* DROPDOWN */
+#waList{
+position:fixed;
+bottom:90px;
+right:20px;
+display:none;
+flex-direction:column;
+gap:10px;
+}
+
+#waList a{
+background:#25D366;
+color:white;
+padding:10px 12px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Marwadi Brothers Furniture</h1>
+<p>Home | Office | Kitchen Furniture</p>
+</header>
+<!-- ORDER BUTTON -->
+<div style="margin:10px;">
+<button onclick="openForm()" style="padding:10px 20px;background:gold;border:none;border-radius:5px;font-weight:bold;cursor:pointer;">
+📦 Order / Enquiry
+</button>
+</div>
+
+<!-- 🔍 SEARCH BAR -->
+<div class="search-box">
+<input type="text" id="search" placeholder="Search furniture on Google (sofa, bed, office...)">
+<button onclick="googleSearch()">Search</button>
+</div>
+
+<!-- HOME -->
+<h2>🏠 Home Furniture</h2>
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+<img src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f">
+<img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6">
+<img src="https://images.unsplash.com/photo-1484154218962-a197022b5858">
+
+</div>
+
+<!-- OFFICE -->
+<h2>🏢 Office Furniture</h2>
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72">
+<img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36">
+<img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd">
+<img src="https://images.unsplash.com/photo-1564069114553-7215e1ff1890">
+
+</div>
+
+<!-- KITCHEN -->
+<h2>🍽️ Kitchen Furniture</h2>
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1556911220-bff31c812dba">
+<img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d">
+<img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77">
+
+</div>
+
+<!-- WHATSAPP ICON -->
+<div id="waBtn" onclick="toggleWA()">💬</div>
+
+<!-- WHATSAPP NUMBERS -->
+<div id="waList">
+<a href="https://wa.me/917737354605" target="_blank">77373 54605</a>
+<a href="https://wa.me/917093682214" target="_blank">70936 82214</a>
+<a href="https://wa.me/919216878453" target="_blank">92168 78453</a>
+</div>
+
+<script>
+
+/* WhatsApp toggle */
+function toggleWA(){
+let box=document.getElementById("waList");
+if(box.style.display==="flex"){
+box.style.display="none";
+}else{
+box.style.display="flex";
+}
+}
+
+/* Google Search */
+function googleSearch(){
+let q=document.getElementById("search").value;
+if(q.trim()!==""){
+window.open("https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q),"_blank");
+}
+}
+
+/* Enter key support */
+document.getElementById("search").addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+googleSearch();
+}
+});
+
+</script>
+<script>
+function openForm(){
+document.getElementById("formBox").style.display="block";
+}
+
+function closeForm(){
+document.getElementById("formBox").style.display="none";
+}
+
+function sendOrder(){
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let address=document.getElementById("address").value;
+let work=document.getElementById("work").value;
+let budget=document.getElementById("budget").value;
+
+if(name=="" || phone=="" || address=="" || work==""){
+alert("Please fill required fields");
+return;
+}
+
+let msg =
+"Furniture Order:%0A" +
+"Name: " + name + "%0A" +
+"Phone: " + phone + "%0A" +
+"Address: " + address + "%0A" +
+"Work: " + work + "%0A" +
+"Budget: " + budget;
+
+let url = "https://wa.me/917737354605?text=" + msg;
+
+window.open(url,"_blank");
+}
+</script>
+<div id="formBox" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#ffffff;padding:20px;width:90%;max-width:420px;max-height:85vh;overflow-y:auto;box-shadow:0 5px 20px rgba(0,0,0,0.3);border-radius:12px;z-index:1000;">
+
+<h2 style="margin-top:0;color:#5b2c06;text-align:center;">🪵 Book Site Visit</h2>
+<p style="text-align:center;color:#666;font-size:14px;">
+Fill your details and our team will contact you.
+</p>
+
+<label><b>👤 Full Name *</b></label><br>
+<input id="name" type="text" placeholder="Enter your full name"
+style="width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;"><br>
+
+<label><b>📞 Mobile Number *</b></label><br>
+<input id="phone" type="tel" placeholder="Enter your mobile number"
+style="width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;"><br>
+
+<label><b>📍 Site / Home Address *</b></label><br>
+<textarea id="address" placeholder="Enter complete address"
+style="width:100%;height:60px;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;"></textarea><br>
+
+<label><b>🛋️ Work Type *</b></label><br>
+<select id="work"
+style="width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+<option value="">Select Work Type</option>
+<option>Modular Kitchen</option>
+<option>Wardrobe</option>
+<option>Bed</option>
+<option>TV Unit</option>
+<option>Office Furniture</option>
+<option>Full Home Interior</option>
+<option>Other</option>
+</select><br>
+
+<label><b>📝 Project Details</b></label><br>
+<textarea id="details" placeholder="Describe your furniture requirement..."
+style="width:100%;height:70px;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;"></textarea><br>
+
+<label><b>💰 Approx Budget</b></label><br>
+<select id="budget"
+style="width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+<option>Below ₹10,000 - ₹50,000 </option>
+<option>₹50,000 - ₹1,00,000</option>
+<option>₹1,00,000 - ₹5,00,000</option>
+<option>Above ₹5,00,000</option>
+</select><br>
+
+<label><b>🚗 Site Visit Required?</b></label><br>
+<select id="visit"
+style="width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+<option>Yes</option>
+<option>No</option>
+</select><br>
+
+<label><b>⏰ Preferred Contact Time</b></label><br>
+<select id="time"
+style="width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+<option>Morning</option>
+<option>Afternoon</option>
+<option>Evening</option>
+</select><br><br>
+
+<button onclick="sendOrder()"
+style="background:#25D366;color:white;padding:12px;width:100%;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;">
+📩 Send Enquiry on WhatsApp
+</button>
+
+<br><br>
+
+<button onclick="closeForm()"
+style="width:100%;padding:10px;border:none;background:#d9534f;color:white;border-radius:8px;cursor:pointer;">
+✖ Close
+</button>
+</div>
+</body>
+</html>
